@@ -1,0 +1,130 @@
+import java.util.Scanner;
+
+public class SyllabusOrganizer{
+
+    //An Array of Chars not found in words
+
+    static char[] Special = {' ', '.', ',', '*', '(', ')', '?', '<', '>','?'};
+
+    //An Array of digits 
+
+    static char[] Digits = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '0'};
+
+    //Tells if a character is Special
+
+    static boolean isSpecial(char c){
+        for(int i = 0; i < Special.length; i++){
+            if(c == Special[i]) return true;
+        }
+        return false;
+    }
+
+    //Tells if a character is a Digit
+
+    static boolean isDigit(char c){
+        for(int i = 0; i < Digits.length; i++){
+            if(c == Digits[i]) return true;
+        }
+        return false;
+    }
+
+    //Array of Chars of the Alphabet
+
+    static char[] Alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+    //Tells if a character is a letter from the alphabet.
+
+    static boolean isLetter(char c){
+        for(int i = 0; i < Alphabet.length; i++){
+            if(c == Alphabet[i]) return true;
+        }
+        return false;
+    }
+
+    //number of words in a string
+
+    static int NumberOfWords(String S1){
+        int w = 0;
+        char[] S = StringToArrayOfChars(S1);
+        for(int i = 0; i < S.length; i++){
+            if(isLetter(S[i])){
+                w++;
+                int skip = 0;
+                for(int j = i; j < S.length; j++){
+                    if(isLetter(S[j])) skip++;
+                    else break;
+                }
+                i = i + skip;
+            }
+
+        }
+        return w;
+    }
+
+    //returns the first word of a String
+
+    static String firstWord(String S1){
+        char[] S = StringToArrayOfChars(S1);
+        String W = "";
+        for(int i = 0; i < S.length; i++){
+            if(isLetter(S[i])){
+                for(int j = i; j < S.length; j++){
+                    if(isLetter(S[j])) W = W + S[j];
+                    else break;
+                    }
+                }
+                if(W.length() > 0) break;
+            }
+            return W;
+        }
+
+    //returns the rest of a string minus the first word
+
+
+
+    //takes a String and gives an array of all words in the string
+
+    /*static String[] StringToArrayOfWords(String S1){
+    }*/
+
+    //Function to turn a String into an Array of char's.
+
+    static char[] StringToArrayOfChars(String S){
+        char[] A = new char[S.length()];
+            for(int i = 0; i < S.length(); i++){
+                A[i] = S.charAt(i);
+            }
+            return A;
+    }
+    
+    //Tells if an input word is found somewhere in an input script
+    static boolean WORDPRESENT(String Word, String Script){
+            char[] WordAr = StringToArrayOfChars(Word);
+            char[] ScriptAr = StringToArrayOfChars(Script);
+            int n = 0;
+                for(int i = 0; i < ScriptAr.length; i++){
+                        if(WordAr[0] == ScriptAr[i]){
+                            for(int j = 0; j < WordAr.length; j++){
+                                if(WordAr[j] == ScriptAr[i + j]) n++;
+                                if(n == WordAr.length) break;
+                        }
+                    }
+                    if(n == WordAr.length) break;
+                }
+                if(n == WordAr.length) return true;
+                return false;
+            }
+
+    
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        String W = scanner.nextLine();
+        //String S = scanner.nextLine();
+        //char M = scanner.nextChar();
+        char[] Characters = StringToArrayOfChars(W);
+        char M = Characters[0];
+
+        System.out.println(isDigit(M));
+    }
+}
