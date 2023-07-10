@@ -38,9 +38,9 @@ public class Main {
             } else if (arr[i].month.equals("December")) {
                 arr[i].monthAsInt = 12;
             }
-            else{
-                arr[i].monthAsInt = -1;
-            }
+//            else{
+//                arr[i].monthAsInt = -1;
+//            }
         }
         return arr;
     }
@@ -70,32 +70,36 @@ public class Main {
         }
         return arr;
     }
-
-    public static assignment[] sortMonth(assignment[] arr, int numAssignments)
-    {
-        for(int i = 0; i < numAssignments; i++){
-            arr[i].dayAsInt = convertToInt(arr[i]);
-        }
-
-        int n = numAssignments;
-
-        // One by one move boundary of unsorted subarray
-        for (int i = 0; i < n-1; i++) {
-            // Find the minimum element in unsorted array
-            int min_idx = i;
-            for (int j = i+1; j < n; j++) {
-                if (arr[j].monthAsInt < arr[min_idx].monthAsInt) {
-                    min_idx = j;
-                }
+    
+        static assignment[] bubbleSort(assignment[] arr, int n)
+        {
+            for (int i = 0; i < n; i++) {
+                arr[i].dayAsInt = convertToInt(arr[i]);
             }
-            // Swap the found minimum element with the first
-            // element
-            assignment temp = arr[min_idx];
-            arr[min_idx] = arr[i];
-            arr[i] = temp;
+            int i, j;
+            assignment temp;
+            boolean swapped;
+            for (i = 0; i < n - 1; i++) {
+                swapped = false;
+                for (j = 0; j < n - i - 1; j++) {
+                    if (arr[j].monthAsInt > arr[j + 1].monthAsInt) {
+
+                        // Swap arr[j] and arr[j+1]
+                        temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                        swapped = true;
+                    }
+                }
+
+                // If no two elements were
+                // swapped by inner loop, then break
+                if (swapped == false)
+                    break;
+            }
+            return arr;
         }
-        return arr;
-    }
+
 
     public static Integer convertToInt(assignment ass){
         return Integer.parseInt(ass.day);
@@ -187,7 +191,8 @@ public class Main {
             if (input.equals("sort")){
                 listOfAssignments = sortDay(listOfAssignments, numOfAssignments);
                 listOfAssignments = monthFormat(listOfAssignments, numOfAssignments);
-                listOfAssignments = sortMonth(listOfAssignments, numOfAssignments);
+                listOfAssignments = bubbleSort(listOfAssignments, numOfAssignments);
+                System.out.println("File is sorted");
             }
 
             if (input.equals("print")) {
