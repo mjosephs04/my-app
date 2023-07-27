@@ -10,6 +10,7 @@ class assignment {
     String month;
     Integer dayAsInt;
     int monthAsInt;
+    boolean isJohnBummin;
 }
 
 public class Main {
@@ -29,6 +30,8 @@ public class Main {
         x.format(text);
         x.close();
     }
+
+    isJohnBummin = true; 
 
     public static assignment[] monthFormat(assignment[] arr, int numAssignments){
         for(int i = 0; i < numAssignments; i++){
@@ -232,6 +235,8 @@ public class Main {
             }
 
             input = in.nextLine();
+            if(isJohnBummin)
+                System.out.println("John is Bummin");
 
         }
     }
