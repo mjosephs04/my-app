@@ -10,11 +10,11 @@ class assignment {
     String month;
     Integer dayAsInt;
     int monthAsInt;
-    boolean isJohnBummin;
 }
 
 public class Main {
 
+    // 
     public static void convertPDF(String fileName) throws IOException{
         File file = new File(fileName);
         PDDocument document = PDDocument.load(file);
@@ -25,13 +25,11 @@ public class Main {
         //System.out.println(text);
         document.close();
         Formatter x;
-        File file1 = new File("text.txt");
-        x = new Formatter("text.txt");
+        File file1 = new File("text1.txt");
+        x = new Formatter("text1.txt");
         x.format(text);
         x.close();
     }
-
-    isJohnBummin = true; 
 
     public static assignment[] monthFormat(assignment[] arr, int numAssignments){
         for(int i = 0; i < numAssignments; i++){
@@ -151,13 +149,14 @@ public class Main {
                 String fileName = in.nextLine();
 
                 //setting the filename
-                String path = "/Users/markjosephs/IdeaProjects/syllabusReader/";
+                String path = "C:\\Users\\19784\\Syllabus\\docs\\pdf\\philosophy.txt";
 
                 //converting pdf to txt
                 convertPDF(fileName);
 
+
                 //attempting to open the file
-                File syll = new File(path + "text1.txt");
+                File syll = new File(path + fileName);
 
                 //checking if file is open and readable
                 try {
@@ -177,7 +176,7 @@ public class Main {
 
 
                 //skipping everything in file up to the schedule
-                while (!(line = sc.nextLine()).equals("Schedule ")) {
+                while (!(line = sc.nextLine()).equals("Schedule")) {
                     continue;
                 }
 
@@ -219,27 +218,50 @@ public class Main {
                 System.out.println("File is sorted");
             }
 
+            String recentMonth = "";
+            String recentDay = "";
+            String recentDescription = ""; 
+
             if (input.equals("print")) {
 
+                System.out.println("\nNumber of assignments: " + numOfAssignments);
+                System.out.println("------------------------------------------------");
                 //prints all data collected from the file to the console
                 for (int k = 0; k < numOfAssignments; k++) {
-                    System.out.println("Month: " + listOfAssignments[k].month);
-                    System.out.println("Day: " + listOfAssignments[k].day);
-                    System.out.println("Description: " + listOfAssignments[k].description);
-                    System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-                    System.out.print("\n");
-                }
 
-                System.out.println("Number of assignments: " + numOfAssignments);
-                System.out.println("------------------------------------------------");
+                    if(listOfAssignments[k].month.equals(recentMonth)){ 
+                        // if we are still in the same month
+                        if(listOfAssignments[k].day.equals(recentDay)){
+                            // we are on the same day
+                            recentDescription = listOfAssignments[k].description; 
+                            System.out.println("    " + listOfAssignments[k].description); // print out the next assingment
+
+                            // if its the same day but the same assingment just skip rewriting it
+                            if(listOfAssignments[k].description.equals(recentDescription)) continue; 
+                        }
+                        // if its the same month but not the same day we print out the day and assingment
+                        recentDay = listOfAssignments[k].day; 
+                        System.out.println();
+                        System.out.print(listOfAssignments[k].day + ": ");
+                        System.out.println(listOfAssignments[k].description);
+                    }
+
+                    else{
+                        // we are in a new month
+                        recentMonth = listOfAssignments[k].month; 
+                        System.out.println("\n\nMonth: " + listOfAssignments[k].month + "\n\n");
+                        recentDay = listOfAssignments[k].day; 
+                        System.out.print(listOfAssignments[k].day + ": ");
+                        recentDescription = listOfAssignments[k].description;
+                        System.out.println(listOfAssignments[k].description);
+                    }
+                    
+                }
             }
 
             input = in.nextLine();
-            if(isJohnBummin)
-                System.out.println("John is Bummin");
 
         }
     }
 
 }
-
