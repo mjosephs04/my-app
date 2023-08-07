@@ -1,5 +1,6 @@
 package com.example.application.views;
 
+import com.example.application.views.calendar.Calendar;
 import com.example.application.views.creator.CreatorView;
 import com.example.application.views.scanner.ScannerView;
 import com.vaadin.flow.component.applayout.AppLayout;
@@ -53,6 +54,7 @@ public class MainLayout extends AppLayout {
 
         nav.addItem(new SideNavItem("Scanner", ScannerView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
         nav.addItem(new SideNavItem("Creator", CreatorView.class, LineAwesomeIcon.FILE.create()));
+        nav.addItem(new SideNavItem("Calendar", Calendar.class, LineAwesomeIcon.ANGULAR.create()));
 
         return nav;
     }
@@ -74,5 +76,4 @@ public class MainLayout extends AppLayout {
         return title == null ? "" : title.value();
     }
 
-    //testing commiting
 }

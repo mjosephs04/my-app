@@ -72,7 +72,7 @@ public class file {
         Scanner sc = new Scanner(syll);
 
         //skipping everything in file up to the schedule
-        while (!(line = sc.nextLine()).equals("Schedule ")) {
+        while (!(line = sc.nextLine()).equals("Schedule")) {
             continue;
         }
 
