@@ -20,6 +20,7 @@ public class Calendar extends VerticalLayout {
 
     private final FullCalendar calendar;
 
+
     public Calendar() {
         calendar = FullCalendarBuilder.create()
 //                .withInitialOptions(defaultInitialOptions)
