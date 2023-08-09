@@ -54,7 +54,7 @@ public class MainLayout extends AppLayout {
 
         nav.addItem(new SideNavItem("Scanner", ScannerView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
         nav.addItem(new SideNavItem("Creator", CreatorView.class, LineAwesomeIcon.FILE.create()));
-        nav.addItem(new SideNavItem("Calendar", Calendar.class, LineAwesomeIcon.ANGULAR.create()));
+        nav.addItem(new SideNavItem("Calendar", Calendar.class, LineAwesomeIcon.BEER_SOLID.create()));
 
         return nav;
     }

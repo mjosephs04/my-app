@@ -6,13 +6,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import java.util.Scanner;
 
-class assignment {
-    String day;
-    String description;
-    String month;
-    Integer dayAsInt;
-    int monthAsInt;
-}
 public class file {
 
     public static int numOfAssignments = 0;

@@ -1,7 +1,6 @@
 package com.example.application.views.creator;
 
 import com.example.application.views.MainLayout;
-//import com.example.application.views.scanner.assignment1;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -15,9 +14,8 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
-
 import java.io.*;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 class assignment {
     String date = "";
@@ -162,7 +160,6 @@ public class CreatorView extends VerticalLayout {
         dialogLayout.add(dueDate);
         dialog.add(dialogLayout);
 
-
         Button addToSyll = new Button("Add to Syllabus");
         addToSyll.addClickListener(event -> {
             System.out.println("Adding");
@@ -179,8 +176,6 @@ public class CreatorView extends VerticalLayout {
 
         });
 
-
-
         Button generate = new Button("Generate Syllabus");
 
         generate.addClickListener(buttonClickEvent -> {
@@ -195,16 +190,12 @@ public class CreatorView extends VerticalLayout {
             }
 
         });
-
-
         add(profName);
         add(className);
         add(classTime);
         add(classLocatn);
         add(addAssigment);
         add(generate);
-
-
 
     }
 
